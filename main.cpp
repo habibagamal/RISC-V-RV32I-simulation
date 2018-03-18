@@ -2,12 +2,12 @@
  This is just a skeleton. It DOES NOT implement all the requirements.
  It only recognizes the "ADD" and "SUB" instructions and prints
  "Unknown Instruction" for all other instructions.
- 
+
  References:
  (1) The risc-v ISA Manual ver. 2.1 @ https://riscv.org/specifications/
  (2) https://github.com/michaeljclark/riscv-meta/blob/master/meta/opcodes
  */
-
+//hi
 #include <iostream>
 #include <fstream>
 #include "stdlib.h"
@@ -40,7 +40,7 @@ void printPrefix(unsigned int instA, unsigned int instCode)
 void instAssembleExec(instWord&inst)
 {
     //Generate instruction machine code
-    
+
     //execute instruction
     if(inst.opcode == 0x33)// R Instructions
     {
@@ -60,7 +60,7 @@ void instAssembleExec(instWord&inst)
     {
         cout << "\tUnknown Instruction \n";
     }
-    
+
 }
 
 int main()
@@ -68,7 +68,7 @@ int main()
     ifstream inFile;
     ofstream outFile;
     instWord W;
-    
+
     inFile.open("div.s");
     if(inFile.is_open())
     {
@@ -76,16 +76,16 @@ int main()
         while(!inFile.eof())
         {
             getline (inFile, W.instText);
-            
+
             //parse(&W);        //parse instText into its instruction format fields
             //instAssembleExec(&W);        //Generate instruction machine code and execute instruction
             //printPrefix(pc, W.instMachineCode);
             //save machine code to an output file
             pc += 4;
         }
-        
+
         inFile.close();
-        
+
         // print out the registers values
         for(int i = 0; i < 32; i++)
             cout << "x" << dec << i << ": \t"<< "0x" << hex << std::setfill('0') << std::setw(8) << regs[i] << "\n";
@@ -93,4 +93,3 @@ int main()
     else
         emitError("Cannot access input file\n");
 }
-
